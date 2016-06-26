@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.get('/count', function(req, res, next){
+router.get('/count/', function(req, res, next){
 	sql = "select count(*) as count from religion";
 	connection.query(sql, function(err, results){
 		getResult(res, err, results);
