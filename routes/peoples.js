@@ -26,8 +26,7 @@ router.get('/:id', function(req, res, next) {
 
 router.post('/',function(req, res, next){
 	param = req.body;
-	console.log(param.name);
-	sql = "insert into people(name) values('"+param.name+"')";
+	sql = "insert into people(fullname, nickname, id_religion, id_gender) values('"+param.fullname+"','"+param.nickname+"','"+param.id_religion+"','"+param.id_gender+"')";
 	connection.query(sql, function(err, results){
 		getResult(res, err, results);
 	});
@@ -35,7 +34,7 @@ router.post('/',function(req, res, next){
 
 router.put('/:id',function(req, res, next){
 	var param = req.body;
-	sql = "update people set name='"+param.name+"' where id_people="+req.params.id;
+	sql = "update people set fullname='"+param.fullname+"',nickname='"+param.nickname+"',id_religion='"+param.id_religion+"',id_gender='"+param.id_gender+"' where id_people="+req.params.id;
 	connection.query(sql, function(err, results){
 		getResult(res, err, results);
 	});
