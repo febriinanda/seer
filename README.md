@@ -9,12 +9,17 @@ This is a place for me to learn about nodeJS and npm as Node Package Managers. F
    ```
    $cd seer
    ```
-   
-3. Start the apps
+
+3. Install node-modules
+   ```
+   $npm install
+   ```
+
+4. Start the apps
    ```
    $set debug=seer:* && npm start
    ```
 
    More about npm-debug please check this [website](https://www.npmjs.com/package/debug).
 
-4. Open browser and go to localhost:3000 (by defaults)
+5. Open browser and go to localhost:3000 (by defaults)
