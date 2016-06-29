@@ -18,7 +18,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var religions = require('./routes/religions');
 var genders = require('./routes/genders');
-var peoples = require('./routes/peoples');
+var people = require('./routes/people');
 
 var app = express();
 
@@ -40,7 +40,7 @@ app.use('/', index);
 app.use('/api/users', users);
 app.use('/api/religions', religions);
 app.use('/api/genders', genders);
-app.use('/api/peoples',peoples);
+app.use('/api/people',people);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
