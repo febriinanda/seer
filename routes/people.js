@@ -26,6 +26,7 @@ router.get('/:id', function(req, res, next) {
 
 router.post('/',function(req, res, next){
 	param = req.body;
+	debug(param);
 	sql = "insert into people(fullname, nickname, id_religion, id_gender) values('"+param.fullname+"','"+param.nickname+"','"+param.id_religion+"','"+param.id_gender+"')";
 	connection.query(sql, function(err, results){
 		getResult(res, err, results);
