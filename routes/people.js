@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var debug = require('debug')('seer:people');
 
+var date = new Date();
+var now = date.getFullYear()+"-"+getMonth(date.getMonth())+"-"+date.getDate();
+
 /* GET people listing. */
 router.get('/', function(req, res, next) {
 	sql = "select * from people";
@@ -27,7 +30,7 @@ router.get('/:id', function(req, res, next) {
 router.post('/',function(req, res, next){
 	param = req.body;
 	debug(param);
-	sql = "insert into people(fullname, nickname, id_religion, id_gender) values('"+param.fullname+"','"+param.nickname+"','"+param.id_religion+"','"+param.id_gender+"')";
+	sql = "insert into people(fullname, nickname, id_religion, id_gender,status,create_date) values('"+param.fullname+"','"+param.nickname+"','"+param.id_religion+"','"+param.id_gender+"',1,'"+now+"')";
 	connection.query(sql, function(err, results){
 		getResult(res, err, results);
 	});
@@ -54,5 +57,10 @@ function getResult(res, err, results){
 	}else{
 		res.send(results);
 	}
+}
+
+function getMonth(val){
+	var res = parseInt(val)+1;
+	return res;
 }
 module.exports = router;
