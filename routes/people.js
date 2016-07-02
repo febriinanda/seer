@@ -7,7 +7,7 @@ var now = date.getFullYear()+"-"+getMonth(date.getMonth())+"-"+date.getDate();
 
 /* GET people listing. */
 router.get('/', function(req, res, next) {
-	sql = "select * from people";
+	sql = "select a.id_people,a.fullname,a.nickname,a.id_religion,a.id_gender,a.create_date,b.name genders, c.name religions from people a left join gender b on a.id_gender=b.id_gender left join religion c on a.id_religion=c.id_religion";
 	connection.query(sql,function(err, results){
 		getResult(res, err, results);
 	});
