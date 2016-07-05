@@ -2,9 +2,6 @@ var express = require('express');
 var router = express.Router();
 var debug = require('debug')('seer:feed');
 
-
-var date = new Date();
-var now = date.getFullYear()+"-"+getMonth(date.getMonth())+"-"+date.getDate();
 /* GET feed listing. */
 router.get('/', function(req, res, next) {
 	sql = "select b.fullname,a.notes,a.create_date from feed a left join people b on a.id_people = b.id_people;";
@@ -30,7 +27,7 @@ router.get('/:id', function(req, res, next) {
 router.post('/',function(req, res, next){
 	param = req.body;
 	debug(param);
-	sql = "insert into feed(id_people,notes,status,create_date) values("+param.id_people+",'"+param.notes+"',1,'"+now+"')";
+	sql = "insert into feed(id_people,notes,status,create_date) values("+param.id_people+",'"+param.notes+"','"+param.status+"','"+param.create_date+"')";
 	connection.query(sql, function(err, results){
 		getResult(res, err, results);
 	});
@@ -38,7 +35,7 @@ router.post('/',function(req, res, next){
 
 router.put('/:id',function(req, res, next){
 	var param = req.body;
-	sql = "update feed set name='"+param.name+"',update_date='"+now+"' where id_feed="+req.params.id;
+	sql = "update feed set name='"+param.name+"',update_date='"+param.update_date+"' where id_feed="+req.params.id;
 	connection.query(sql, function(err, results){
 		getResult(res, err, results);
 	});
@@ -58,8 +55,4 @@ function getResult(res, err, results){
 	}
 }
 
-function getMonth(val){
-	var res = parseInt(val)+1;
-	return res;
-}
 module.exports = router;

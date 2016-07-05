@@ -15,7 +15,6 @@ GLOBAL.connection = mysql.createConnection({
 connection.connect();
 
 var index = require('./routes/index');
-var users = require('./routes/users');
 var religions = require('./routes/religions');
 var genders = require('./routes/genders');
 var people = require('./routes/people');
@@ -38,7 +37,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.use('/', index);
-app.use('/api/users', users);
 app.use('/api/religions', religions);
 app.use('/api/genders', genders);
 app.use('/api/people',people);
